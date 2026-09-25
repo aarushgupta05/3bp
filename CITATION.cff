@@ -1,0 +1,31 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "Three-body integrator operating envelope: research code"
+abstract: >-
+  Research code for a comparison of fixed-step leapfrog, time-symmetric adaptive
+  leapfrog and IAS15 across analytical, binary-single and Sun-Earth-Moon
+  three-body configurations, together with the chaos-appropriate diagnostic panel
+  used to judge them.
+type: software
+authors:
+  - family-names: Gupta
+    given-names: Aarush
+    affiliation: "UWCSEA East, Singapore"
+license: MIT
+version: "1.0.0"
+keywords:
+  - three-body problem
+  - symplectic integration
+  - time-symmetric adaptation
+  - numerical stability
+  - N-body diagnostics
+
+# ONE LINE LEFT TO FILL. Paste the address of the repository after you create it
+# on GitHub, then delete this comment. It looks like
+# https://github.com/<your-username>/three-body-operating-envelope
+repository-code: "PASTE-YOUR-GITHUB-URL-HERE"
+
+# Nothing else is needed. An ORCID is optional and CJSJ does not ask for one.
+# If you later tag a release or mint a Zenodo DOI, add these two lines:
+#   date-released: "YYYY-MM-DD"
+#   doi: "10.5281/zenodo.XXXXXXX"

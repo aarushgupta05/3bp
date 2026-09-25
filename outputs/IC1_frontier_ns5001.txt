@@ -1,0 +1,56 @@
+IC1 PURE-NEWTON FRONTIER - fixed-step leapfrog vs tsalf.  T=100, G=1.0, n_samples=5001.
+Table 4 of the paper. Pure Newtonian point masses, no softening.
+Energy diagnostic matches the dynamics: eps=0 (true Newtonian invariant).
+bounded := max distance of any body from COM < 10.0 (EJECT_AU in simon_core).
+
+VERIFICATION GUARD (soft mode, dt=0.04, must reproduce the stored anchors):
+   IC1: 3.8564%   (stored anchor 3.8564)  -> PASS
+   IC3: 0.6718%   (stored anchor 0.6718)  -> PASS
+   IC4: 13.7722%   (stored anchor 13.7722)  -> PASS
+   IC6: 0.0006%   (stored anchor 0.0006202)  -> PASS
+
+========================================================================================================
+A) FIXED-STEP LEAPFROG on IC1, pure Newtonian
+========================================================================================================
+       dt       fe     max|dE/E0|   bounded   max dist from COM [AU]   note
+  0.08000     1251       1.86068%        ok                     1.64   
+  0.04000     2501       3.23826%        ok                     3.37   
+  0.02000     5001       355.581%     EJECT                   156.89   EJECTION BAND
+  0.01000    10001       2943.84%     EJECT                   460.24   EJECTION BAND
+  0.00500    20001       2.52394%        ok                     2.25   
+  0.00250    40001       17.8715%        ok                     6.68   
+  0.00125    80001      0.194235%        ok                     1.52   
+
+  -> NON-MONOTONE: bounded at dt=0.08 and 0.04, EJECTS at dt=0.02 and 0.01, bounded again at 0.005 and finer.
+  -> Refining the fixed step from 0.04 to 0.02 DESTROYS the trajectory. Resolution alone is not a reliable fix.
+
+========================================================================================================
+B) tsalf (time-symmetric adaptive leapfrog) on IC1, pure Newtonian
+========================================================================================================
+      eta       fe     max|dE/E0|   bounded
+    0.200     2008      0.607884%        ok
+    0.100     4273      0.154922%        ok
+    0.050     8746     0.0873306%        ok
+    0.020    21949    0.00661345%        ok
+    0.010    40729    0.00154776%        ok
+
+  -> MONOTONE and bounded at every setting. Refining eta always improves energy. No ejection band.
+
+========================================================================================================
+C) SAMPLING-CONVENTION SENSITIVITY (referee-proofing)
+========================================================================================================
+max|dE| is a MAX OVER OUTPUT SAMPLES, so for bounded IC1 runs with a sharp close-encounter spike it
+depends on n_samples. The bounded/EJECT verdict does NOT.
+       dt       ns=1001       ns=2001       ns=5001   bounded verdict
+  0.02000        355.6%        355.6%        355.6%   EJECT (identical at all ns)
+  0.01000         2943%         2943%         2944%   EJECT (identical at all ns)
+  0.00500      0.06607%       0.1497%        2.524%   ok (identical at all ns)
+  0.00125     0.002354%      0.01136%       0.1942%   ok (identical at all ns)
+
+  -> Report the sampling convention (n_samples=5001 over T=100) alongside any max|dE| value.
+  -> The paper uses n_samples=5001 throughout: it is the only grid tested whose spacing T/(n_samples-1)=0.02
+     divides every timestep in the sweep, so no fixed-step method picks up a sub-step phase error the
+     adaptive methods do not. The table above is the column at 5001.
+  -> Lead stability claims with bounded/EJECT and pair-range, which are sampling-robust.
+
+generated 2026-09-19 - reproduce with: python scripts/ic1_frontier_5001.py

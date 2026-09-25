@@ -1,0 +1,10 @@
+# Python 3.10 or newer. The versions below are the tested floors.
+numpy>=2.2
+matplotlib>=3.8
+rebound>=3.28          # provides the IAS15 reference integrator
+
+# Only needed to regenerate the Sun-Earth-Moon initial conditions from JPL
+# Horizons, which scripts/config_sweep.py skips by default. Fig. 4 reads the
+# frozen run in outputs/sun_earth_moon_run.json instead, so a normal reproduction
+# does not need this and does not need network access.
+astroquery>=0.4.7
