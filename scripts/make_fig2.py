@@ -76,7 +76,7 @@ plt.rcParams.update({
     "font.size": 8,
     "axes.linewidth": 0.8,
     "xtick.labelsize": 8, "ytick.labelsize": 8,
-    "legend.fontsize": 7, "axes.labelsize": 8,
+    "legend.fontsize": 8, "axes.labelsize": 8,
 })
 COLUMN_IN = 3.4                      # CJSJ two-column text block, one column
 fig, ax = plt.subplots(figsize=(COLUMN_IN, COLUMN_IN))
@@ -119,8 +119,8 @@ handles += [
     Line2D([0], [0], color="0.25", marker="D", markersize=4.6, lw=0, label="IAS15"),
     Line2D([0], [0], color="0.25", marker="X", markersize=5.5, lw=0, label="Ejected"),
 ]
-ax.legend(handles=handles, loc="upper right", fontsize=7, ncol=2,
-          title="Binary separation", title_fontsize=7,
+ax.legend(handles=handles, loc="upper right", fontsize=8, ncol=2,
+          title="Binary separation", title_fontsize=8,
           framealpha=0.95, edgecolor="0.7", borderpad=0.4, labelspacing=0.3,
           handlelength=1.6, columnspacing=1.0)
 

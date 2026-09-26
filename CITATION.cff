@@ -20,12 +20,8 @@ keywords:
   - numerical stability
   - N-body diagnostics
 
-# ONE LINE LEFT TO FILL. Paste the address of the repository after you create it
-# on GitHub, then delete this comment. It looks like
-# https://github.com/<your-username>/three-body-operating-envelope
-repository-code: "PASTE-YOUR-GITHUB-URL-HERE"
+repository-code: "https://github.com/aarushgupta05/3bp"
 
-# Nothing else is needed. An ORCID is optional and CJSJ does not ask for one.
 # If you later tag a release or mint a Zenodo DOI, add these two lines:
 #   date-released: "YYYY-MM-DD"
 #   doi: "10.5281/zenodo.XXXXXXX"

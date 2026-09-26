@@ -64,7 +64,7 @@ plt.rcParams.update({
     "font.size": 8,
     "axes.linewidth": 0.8,
     "xtick.labelsize": 8, "ytick.labelsize": 8,
-    "legend.fontsize": 7,
+    "legend.fontsize": 8,
     "axes.labelsize": 8,
 })
 COLUMN_IN = 3.4                      # CJSJ two-column text block, one column
@@ -101,13 +101,15 @@ handles += [
     Line2D([0], [0], color="0.25", marker="*", markersize=6.5, lw=1.1, label="TSALF"),
     Line2D([0], [0], color="0.25", marker="X", markersize=5.5, lw=0, label="Ejected"),
 ]
-ax.legend(handles=handles, loc="upper right", fontsize=7, ncol=2,
-          framealpha=0.95, edgecolor="0.7", borderpad=0.4, labelspacing=0.3,
-          handlelength=1.6, columnspacing=1.0)
+# key below the axes: at 8 point the box no longer fits inside without
+# covering the IC1 ejection band, which is the point of the figure
+ax.legend(handles=handles, loc="upper center", bbox_to_anchor=(0.5, -0.155),
+          fontsize=8, ncol=4, framealpha=0.95, edgecolor="0.7", borderpad=0.4,
+          labelspacing=0.3, handlelength=1.6, columnspacing=1.0)
 
 fig.tight_layout()
 os.makedirs(os.path.dirname(os.path.abspath(OUT)), exist_ok=True)
-fig.savefig(OUT, dpi=300)
+fig.savefig(OUT, dpi=300, bbox_inches="tight")
 print("wrote", OUT)
 for c in CFG:
     n_lf, n_ts = len(data[c]["leapfrog"]), len(data[c]["tsalf"])

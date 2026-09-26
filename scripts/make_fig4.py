@@ -88,7 +88,7 @@ plt.rcParams.update({
     "font.serif": ["Times New Roman", "Liberation Serif", "Nimbus Roman", "DejaVu Serif"],
     "font.size": 8, "axes.linewidth": 0.8,
     "xtick.labelsize": 8, "ytick.labelsize": 8,
-    "legend.fontsize": 7, "axes.labelsize": 8,
+    "legend.fontsize": 8, "axes.labelsize": 8,
 })
 COLUMN_IN = 3.4                      # CJSJ two-column text block, one column
 fig, ax = plt.subplots(figsize=(COLUMN_IN, COLUMN_IN * 1.06))
@@ -101,7 +101,7 @@ ax.set_xlabel("Time (years)", labelpad=3)
 ax.set_ylabel("Earth to Moon separation (AU)", labelpad=3)
 ax.grid(alpha=0.25, which="both", lw=0.4)
 # key below the axes: see the module docstring
-ax.legend(fontsize=6.2, loc="upper center", bbox_to_anchor=(0.5, -0.20), ncol=2,
+ax.legend(fontsize=8, loc="upper center", bbox_to_anchor=(0.5, -0.19), ncol=2,
           framealpha=0.95, edgecolor="0.7", handlelength=1.8, labelspacing=0.3,
           columnspacing=1.2, borderpad=0.4)
 fig.tight_layout()
